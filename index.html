@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Vehicle Tracker - Smart Green Corridor</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div class="main-container">
+    <h1 class="main-heading">Emergency Vehicle Tracker</h1>
+    <p class="sub-heading">Smart Green Corridor System</p>
+
+    <div class="action-row">
+      <button id="startBtn" class="btn action-btn start-btn" onclick="startEmergency()">START</button>
+      <button class="btn action-btn sos-btn" onclick="sendSOS()">SOS</button>
+    </div>
+    <div class="mode-label-row">
+      <span class="mode-label blue-label">Emergency Mode</span>
+      <span class="mode-label red-label">Emergency Alert</span>
+    </div>
+
+    <div class="section-card map-section">
+      <h2>Live Location Map</h2>
+      <div id="map" class="map-area"></div>
+    </div>
+
+    <div class="section-card">
+      <button class="btn find-btn" onclick="findHospitals()">Find Nearest Hospital</button>
+    </div>
+
+    <!-- Popups/Toasts -->
+    <div id="popup-toast" class="popup-toast" style="display:none;"></div>
+    <div id="hospitalList" class="hospital-list"></div>
+
+    <div class="section-card instructions-card">
+      <h2>Instructions</h2>
+      <ol>
+        <li>Click <b>Start Emergency Mode</b> (Blue Button)</li>
+        <li>Allow location access when prompted</li>
+        <li>Click <b>Find Nearest Hospital</b></li>
+        <li>Select destination hospital</li>
+        <li>Traffic signals auto green as you approach</li>
+        <li>Nearby vehicles will receive alerts</li>
+        <li>Press <b>SOS</b> (Red Button) for police assistance</li>
+        <li>Click <b>Stop Emergency Mode</b> when arrived</li>
+      </ol>
+    </div>
+
+    <div class="section-card status-card">
+      <h2>Status Information</h2>
+      <div class="status-grid">
+        <div><span class="label">Status:</span> <span id="status" class="value inactive">Inactive</span></div>
+        <div><span class="label">Latitude:</span> <span id="latitude">--</span></div>
+        <div><span class="label">Longitude:</span> <span id="longitude">--</span></div>
+        <div><span class="label">Speed:</span> <span id="speed">0.0 km/h</span></div>
+        <div><span class="label">Last Update:</span> <span id="lastUpdate">Never</span></div>
+      </div>
+      <button id="stopBtn" class="btn stop-btn" style="display:none" onclick="stopEmergency()">Stop Emergency Mode</button>
+    </div>
+
+    <footer class="footer">
+      <p>Smart Emergency Green Corridor System<br>Saving Lives Through Technology</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
