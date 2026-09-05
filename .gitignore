@@ -1,0 +1,15 @@
+# Real config — keep secrets out of the repo
+config.js
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+package-lock.json
+
+# Logs
+*.log
